@@ -119,7 +119,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.GBHawk
 				}
 				else
 				{
-					Bios = comm.CoreFileProvider.GetFirmware("GBC", "World", true, "BIOS Not Found, Cannot Load");
+					Bios = comm.CoreFileProvider.GetFirmware("GBCS", "World", true, "BIOS Not Found, Cannot Load");
 					ppu = new GBC_PPU();
 					is_GBC = true;
 				}
@@ -132,7 +132,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.GBHawk
 			}
 			else
 			{
-				Bios = comm.CoreFileProvider.GetFirmware("GBC", "World", true, "BIOS Not Found, Cannot Load");
+				Bios = comm.CoreFileProvider.GetFirmware("GBCS", "World", true, "BIOS Not Found, Cannot Load");
 				ppu = new GBC_PPU();
 				is_GBC = true;
 			}			

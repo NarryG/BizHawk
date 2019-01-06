@@ -12,7 +12,7 @@ namespace BizHawk.Emulation.Cores.Computers.AmstradCPC
 
         public ControllerDefinition ControllerDefinition { get; set; }
 
-        public void FrameAdvance(IController controller, bool render, bool renderSound)
+        public bool FrameAdvance(IController controller, bool render, bool renderSound)
         {
             _controller = controller;
 
@@ -42,7 +42,9 @@ namespace BizHawk.Emulation.Cores.Computers.AmstradCPC
             {
                 _lagCount++;
             }
-        }
+
+			return true;
+		}
 
         public int Frame
         {

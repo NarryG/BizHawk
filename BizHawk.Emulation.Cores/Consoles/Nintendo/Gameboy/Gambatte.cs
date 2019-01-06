@@ -97,7 +97,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.Gameboy
 
 				if ((flags & LibGambatte.LoadFlags.FORCE_DMG) == LibGambatte.LoadFlags.FORCE_DMG)
 				{
-					byte[] Bios = comm.CoreFileProvider.GetFirmware("GB", "World", true, "BIOS Not Found, Cannot Load");
+					byte[] Bios = comm.CoreFileProvider.GetFirmware("GBS", "World", true, "BIOS Not Found, Cannot Load");
 
 					IsCgb = false;
 
@@ -108,7 +108,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.Gameboy
 				}
 				else
 				{
-					byte[] Bios = comm.CoreFileProvider.GetFirmware("GBC", "World", true, "BIOS Not Found, Cannot Load");
+					byte[] Bios = comm.CoreFileProvider.GetFirmware("GBCS", "World", true, "BIOS Not Found, Cannot Load");
 
 					IsCgb = true;
 

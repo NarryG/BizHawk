@@ -79,7 +79,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 			magicSoundProvider = null;
 		}
 
-		class MagicSoundProvider : ISoundProvider, IDisposable
+		public class MagicSoundProvider : ISoundProvider, IDisposable
 		{
 			BlipBuffer blip;
 			NES nes;
@@ -157,7 +157,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 				}
 			}
 		}
-		MagicSoundProvider magicSoundProvider;
+		public MagicSoundProvider magicSoundProvider;
 
 		public void HardReset()
 		{
@@ -311,7 +311,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 
 		bool resetSignal;
 		bool hardResetSignal;
-		public void FrameAdvance(IController controller, bool render, bool rendersound)
+		public bool FrameAdvance(IController controller, bool render, bool rendersound)
 		{
 			_controller = controller;
 
@@ -377,12 +377,6 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 			}
 			else
 			{
-				ppu.ppu_init_frame();
-
-				ppu.do_vbl = true;
-				ppu.do_active_sl = true;
-				ppu.do_pre_vbl = true;
-
 				// do the vbl ticks seperate, that will save us a few checks that don't happen in active region
 				while (ppu.do_vbl)
 				{
@@ -415,6 +409,40 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 			// turn off all cheats
 			// any cheats still active will be re-applied by the buspoke at the start of the next frame
 			num_cheats = 0;
+
+			return true;
+		}
+
+		public bool controller_was_read;
+		public bool frame_is_done;
+		// this function will run one step of the ppu 
+		// it will return whether the controller is read or not.
+		public void do_single_step(out bool cont_read, out bool frame_done)
+		{
+			controller_was_read = false;
+			frame_is_done = false;
+			if (ppu.ppudead > 0)
+			{
+				ppu.NewDeadPPU();
+			}
+			else if (ppu.do_vbl)
+			{
+				ppu.TickPPU_VBL();
+			}
+			else if (ppu.do_active_sl)
+			{
+				ppu.TickPPU_active();
+			}
+			else if (ppu.do_pre_vbl)
+			{
+				ppu.TickPPU_preVBL();
+			}
+
+			cont_read = controller_was_read;
+			frame_done = frame_is_done;
+
+			controller_was_read = false;
+			frame_is_done = false;
 		}
 
 		//PAL:
@@ -742,6 +770,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 		{
 			InputCallbacks.Call();
 			lagged = false;
+			controller_was_read = true;
 			byte ret = 0;
 			if (_isVS)
 			{
@@ -810,7 +839,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.NES
 
 		public byte DummyReadMemory(ushort addr) { return 0; }
 
-		private void ApplySystemBusPoke(int addr, byte value)
+		public void ApplySystemBusPoke(int addr, byte value)
 		{
 			if (addr < 0x2000)
 			{
