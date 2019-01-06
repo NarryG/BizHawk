@@ -6,11 +6,11 @@ using BizHawk.Common;
 using BizHawk.Common.ReflectionExtensions;
 using BizHawk.Emulation.Common;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public class SUBNESHawkControllerDeck
+	public class SubNESHawkControllerDeck
 	{
-		public SUBNESHawkControllerDeck(string controller1Name, string controller2Name)
+		public SubNESHawkControllerDeck(string controller1Name, string controller2Name)
 		{
 			if (!ValidControllerTypes.ContainsKey(controller1Name))
 			{
@@ -68,7 +68,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
 			{
 				if (_controllerTypes == null)
 				{
-					_controllerTypes = typeof(SUBNESHawkControllerDeck).Assembly
+					_controllerTypes = typeof(SubNESHawkControllerDeck).Assembly
 						.GetTypes()
 						.Where(t => typeof(IPort).IsAssignableFrom(t))
 						.Where(t => !t.IsAbstract && !t.IsInterface)

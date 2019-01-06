@@ -5,9 +5,9 @@ using BizHawk.Common;
 using BizHawk.Emulation.Common;
 using BizHawk.Emulation.Cores.Nintendo.NES;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public partial class SUBNESHawk : IStatable
+	public partial class SubNESHawk : IStatable
 	{
 		public bool BinarySaveStatesPreferred => true;
 

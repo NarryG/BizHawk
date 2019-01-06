@@ -1,8 +1,8 @@
 ﻿using BizHawk.Emulation.Common;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public partial class SUBNESHawk : IInputPollable
+	public partial class SubNESHawk : IInputPollable
 	{
 		public int LagCount
 		{

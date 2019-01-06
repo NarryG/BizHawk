@@ -7,52 +7,52 @@ using BizHawk.Common;
 using BizHawk.Emulation.Common;
 using BizHawk.Emulation.Cores.Nintendo.NES;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public partial class SUBNESHawk : IEmulator, IStatable, ISettable<SUBNESHawk.SUBNESHawkSettings, SUBNESHawk.SUBNESHawkSyncSettings>
+	public partial class SubNESHawk : IEmulator, IStatable, ISettable<SubNESHawk.SubNESHawkSettings, SubNESHawk.SubNESHawkSyncSettings>
 	{
-		public SUBNESHawkSettings GetSettings()
+		public SubNESHawkSettings GetSettings()
 		{
 			return subnesSettings.Clone();
 		}
 
-		public SUBNESHawkSyncSettings GetSyncSettings()
+		public SubNESHawkSyncSettings GetSyncSettings()
 		{
 			return subnesSyncSettings.Clone();
 		}
 
-		public bool PutSettings(SUBNESHawkSettings o)
+		public bool PutSettings(SubNESHawkSettings o)
 		{
 			subnesSettings = o;
 			return false;
 		}
 
-		public bool PutSyncSettings(SUBNESHawkSyncSettings o)
+		public bool PutSyncSettings(SubNESHawkSyncSettings o)
 		{
-			bool ret = SUBNESHawkSyncSettings.NeedsReboot(subnesSyncSettings, o);
+			bool ret = SubNESHawkSyncSettings.NeedsReboot(subnesSyncSettings, o);
 			subnesSyncSettings = o;
 			return ret;
 		}
 
-		private SUBNESHawkSettings subnesSettings = new SUBNESHawkSettings();
-		public SUBNESHawkSyncSettings subnesSyncSettings = new SUBNESHawkSyncSettings();
+		private SubNESHawkSettings subnesSettings = new SubNESHawkSettings();
+		public SubNESHawkSyncSettings subnesSyncSettings = new SubNESHawkSyncSettings();
 
-		public class SUBNESHawkSettings
+		public class SubNESHawkSettings
 		{
-			public SUBNESHawkSettings Clone()
+			public SubNESHawkSettings Clone()
 			{
-				return (SUBNESHawkSettings)MemberwiseClone();
+				return (SubNESHawkSettings)MemberwiseClone();
 			}
 		}
 
-		public class SUBNESHawkSyncSettings
+		public class SubNESHawkSyncSettings
 		{
-			public SUBNESHawkSyncSettings Clone()
+			public SubNESHawkSyncSettings Clone()
 			{
-				return (SUBNESHawkSyncSettings)MemberwiseClone();
+				return (SubNESHawkSyncSettings)MemberwiseClone();
 			}
 
-			public static bool NeedsReboot(SUBNESHawkSyncSettings x, SUBNESHawkSyncSettings y)
+			public static bool NeedsReboot(SubNESHawkSyncSettings x, SubNESHawkSyncSettings y)
 			{
 				return !DeepEquality.DeepEquals(x, y);
 			}

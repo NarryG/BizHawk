@@ -1215,7 +1215,8 @@ namespace BizHawk.Client.EmuHawk
 		private void CoresSubMenu_DropDownOpened(object sender, EventArgs e)
 		{
 			GBInSGBMenuItem.Checked = Global.Config.GB_AsSGB;
-			
+			SubNESHawkMenuItem.Checked = Global.Config.UseSubNesHawk;
+
 			allowGameDBCoreOverridesToolStripMenuItem.Checked = Global.Config.CoreForcingViaGameDB;
 		}
 
@@ -1301,6 +1302,16 @@ namespace BizHawk.Client.EmuHawk
 		private void GbInSgbMenuItem_Click(object sender, EventArgs e)
 		{
 			Global.Config.GB_AsSGB ^= true;
+
+			if (!Emulator.IsNull())
+			{
+				FlagNeedsReboot();
+			}
+		}
+
+		private void SubNESHawkMenuItem_Click(object sender, EventArgs e)
+		{
+			Global.Config.UseSubNesHawk ^= true;
 
 			if (!Emulator.IsNull())
 			{

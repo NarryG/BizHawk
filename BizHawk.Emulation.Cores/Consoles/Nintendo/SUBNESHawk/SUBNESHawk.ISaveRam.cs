@@ -1,9 +1,9 @@
 ﻿using System;
 using BizHawk.Emulation.Common;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public partial class SUBNESHawk : ISaveRam
+	public partial class SubNESHawk : ISaveRam
 	{
 		public bool SaveRamModified
 		{

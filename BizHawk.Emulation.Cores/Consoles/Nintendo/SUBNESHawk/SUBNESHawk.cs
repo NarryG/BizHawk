@@ -6,29 +6,27 @@ using BizHawk.Emulation.Common;
 using BizHawk.Emulation.Cores.Nintendo.NES;
 using System.Runtime.InteropServices;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
 	[Core(
-		"SUBNESHawk",
+		"SubNESHawk",
 		"",
 		isPorted: false,
 		isReleased: false)]
 	[ServiceNotApplicable(typeof(IDriveLight))]
-	public partial class SUBNESHawk : IEmulator, ISaveRam, IDebuggable, IStatable, IInputPollable, IRegionable,
-	ISettable<SUBNESHawk.SUBNESHawkSettings, SUBNESHawk.SUBNESHawkSyncSettings>
+	public partial class SubNESHawk : IEmulator, ISaveRam, IDebuggable, IStatable, IInputPollable, IRegionable,
+	ISettable<SubNESHawk.SubNESHawkSettings, SubNESHawk.SubNESHawkSyncSettings>
 	{
-		// we want to create two GBHawk instances that we will run concurrently
-		// maybe up to 4 eventually?
 		public NES.NES subnes;
 
 		[CoreConstructor("NES")]
-		public SUBNESHawk(CoreComm comm, GameInfo game, byte[] rom, /*string gameDbFn,*/ object settings, object syncSettings)
+		public SubNESHawk(CoreComm comm, GameInfo game, byte[] rom, /*string gameDbFn,*/ object settings, object syncSettings)
 		{
 			var ser = new BasicServiceProvider(this);
 
-			subnesSettings = (SUBNESHawkSettings)settings ?? new SUBNESHawkSettings();
-			subnesSyncSettings = (SUBNESHawkSyncSettings)syncSettings ?? new SUBNESHawkSyncSettings();
-			_controllerDeck = new SUBNESHawkControllerDeck(SUBNESHawkControllerDeck.DefaultControllerName, SUBNESHawkControllerDeck.DefaultControllerName);
+			subnesSettings = (SubNESHawkSettings)settings ?? new SubNESHawkSettings();
+			subnesSyncSettings = (SubNESHawkSyncSettings)syncSettings ?? new SubNESHawkSyncSettings();
+			_controllerDeck = new SubNESHawkControllerDeck(SubNESHawkControllerDeck.DefaultControllerName, SubNESHawkControllerDeck.DefaultControllerName);
 
 			CoreComm = comm;
 
@@ -61,7 +59,7 @@ namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
 
 		public int _frame = 0;
 
-		private readonly SUBNESHawkControllerDeck _controllerDeck;
+		private readonly SubNESHawkControllerDeck _controllerDeck;
 
 		private readonly ITraceable _tracer;
 

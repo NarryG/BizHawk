@@ -6,7 +6,7 @@ using System.Linq;
 using BizHawk.Common;
 using BizHawk.Emulation.Common;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
 	/// <summary>
 	/// Represents a GB add on

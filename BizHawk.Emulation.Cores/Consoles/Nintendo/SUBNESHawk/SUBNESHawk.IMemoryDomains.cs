@@ -4,9 +4,9 @@ using System.Linq;
 
 using BizHawk.Emulation.Common;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public partial class SUBNESHawk
+	public partial class SubNESHawk
 	{
 		private MemoryDomainList _memoryDomains;
 		private bool _memoryDomainsSetup = false;

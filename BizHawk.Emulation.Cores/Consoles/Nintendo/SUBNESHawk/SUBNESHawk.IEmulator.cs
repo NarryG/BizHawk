@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 
 using BizHawk.Emulation.Cores.Nintendo.NES;
 
-namespace BizHawk.Emulation.Cores.Nintendo.SUBNESHawk
+namespace BizHawk.Emulation.Cores.Nintendo.SubNESHawk
 {
-	public partial class SUBNESHawk : IEmulator
+	public partial class SubNESHawk : IEmulator
 	{
 		public IEmulatorServiceProvider ServiceProvider { get; }
 
